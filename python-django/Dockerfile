@@ -20,8 +20,4 @@ RUN apt-get update && apt-get install --no-install-recommends --yes \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install Poetry
-RUN pip install "poetry"
-
-# Install basic dependencies
-RUN poetry add gunicorn gevent
-
+RUN pip install "poetry gunicorn gevent"
