@@ -1,0 +1,43 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python_base: [ slim, ]
+        python_versions: [ "3.10", "3.11" ]
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: true
+
+    - uses: jungwinter/split@v2
+      id: reponame
+      with:
+        msg: ${{github.repository}}
+        seperator: '/'
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Build python-django images
+      uses: elgohr/Publish-Docker-Github-Action@v5
+      env:
+        PYTHON_BASE: ${{ matrix.python_base }}
+        PYTHON_VERSION: ${{ matrix.python_versions }}
+      with:
+        name: ${{ steps.reponame.outputs._0 }}/python-django
+        registry: ghcr.io
+        username: ${{ steps.reponame.outputs._0 }}
+        password: ${{ secrets.DOCKER_PAT }}
+        dockerfile: python-django/Dockerfile
+        buildargs: PYTHON_BASE, PYTHON_VERSION
+        platforms: linux/amd64, linux/arm64
+        tags: ${{ matrix.python_versions }}-${{ matrix.python_base }}
