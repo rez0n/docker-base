@@ -22,3 +22,6 @@ RUN apt-get update && apt-get install --no-install-recommends --yes \
 # Install Poetry
 RUN pip install "poetry"
 
+# Install basic dependencies
+RUN poetry add gunicorn gevent
+

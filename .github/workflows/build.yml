@@ -38,6 +38,6 @@ jobs:
         username: ${{ steps.reponame.outputs._0 }}
         password: ${{ secrets.DOCKER_PAT }}
         dockerfile: python-django/Dockerfile
-        buildargs: PYTHON_BASE, PYTHON_VERSION
-        platforms: linux/amd64, linux/arm64
+        buildargs: PYTHON_BASE,PYTHON_VERSION
+        platforms: linux/amd64,linux/arm64
         tags: ${{ matrix.python_versions }}-${{ matrix.python_base }}
