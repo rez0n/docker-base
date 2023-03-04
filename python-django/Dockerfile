@@ -3,7 +3,7 @@ ARG PYTHON_VERSION
 
 FROM python:$PYTHON_VERSION-$PYTHON_BASE
 
-LABEL org.opencontainers.image.source="https://github.com/rez0n/docker-base"
+LABEL org.opencontainers.image.source=https://github.com/rez0n/docker-base
 
 ENV PYTHONUNBUFFERED=1 \
     PYTHONFAULTHANDLER=1 \
