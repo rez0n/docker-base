@@ -15,7 +15,7 @@ ENV PYTHONUNBUFFERED=1 \
 
 # Install dependencies
 RUN apt-get update && apt-get install --no-install-recommends --yes \
-    awscli whois net-tools nano \
+    awscli whois net-tools nano git \
     libpq-dev gcc python3-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
