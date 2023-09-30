@@ -16,8 +16,9 @@ ENV PYTHONUNBUFFERED=1 \
 # Install dependencies
 RUN apt-get update && apt-get install --no-install-recommends --yes \
     awscli whois net-tools nano git openssh-client ca-certificates \
+    netcat-traditional \
     libpq-dev gcc python3-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install Poetry
-RUN pip install poetry gunicorn gevent
+RUN pip install poetry gunicorn gevent bjoern
