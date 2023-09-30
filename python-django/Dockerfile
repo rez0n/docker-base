@@ -17,6 +17,7 @@ ENV PYTHONUNBUFFERED=1 \
 RUN apt-get update && apt-get install --no-install-recommends --yes \
     awscli whois net-tools nano git openssh-client ca-certificates \
     netcat-traditional \
+    libev-dev \
     libpq-dev gcc python3-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
